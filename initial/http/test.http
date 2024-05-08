@@ -1,0 +1,52 @@
+###Not Found
+GET http://localhost:8000/
+
+> {%
+client.test("Response code", function () {
+    client.assert(response.status == 404);
+})
+ %}
+
+###Create New Product - Invalid Request
+POST http://localhost:8000/products
+Content-Type: application/json
+
+{
+"field": 1
+}
+
+> {%
+    client.test("Response code", function () {
+        client.assert(response.status == 400);
+    })
+%}
+
+###Create New Product - Missing field value
+POST http://localhost:8000/products
+Content-Type: application/json
+
+{
+  "name": "New product",
+  "description": null,
+}
+
+> {%
+    client.test("Response code", function () {
+        client.assert(response.status == 400);
+    })
+%}
+
+###Create New Product - Successful flow
+POST http://localhost:8000/products
+Content-Type: application/json
+
+{
+  "name": "New product",
+  "description": "New product description"
+}
+
+> {%
+    client.test("Response code", function () {
+        client.assert(response.status == 201);
+    })
+%}
