@@ -1,0 +1,30 @@
+spring:
+  web:
+    resources:
+      add-mappings: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: h2
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+    url: jdbc:h2:mem:demo_dev
+  jackson:
+    serialization:
+      indent-output: true
+    default-property-inclusion: non_null
+
+server:
+  port: 8000
+
+application:
+  security:
+    secret: d201cXE5dEZMRU1VcGFOUVV5Z3NESmFUclN1QlROT1E=
+    ttl: 180000 # 30 minutes
